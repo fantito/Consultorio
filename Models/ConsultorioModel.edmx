@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ConsultorioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DocumentoTipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Especialidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pacientes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DocumentoNro" Type="varchar" MaxLength="20" />
+          <Property Name="DocumentoTipoId" Type="int" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="datetime" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="FechaBaja" Type="datetime" />
+          <Property Name="FechaModificacion" Type="datetime" />
+          <Property Name="Domicilio" Type="varchar" MaxLength="200" />
+          <Property Name="Mail" Type="varchar" MaxLength="255" />
+          <Property Name="foto" Type="image" />
+        </EntityType>
+        <EntityType Name="PersonasTelefonos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonaId" Type="int" Nullable="false" />
+          <Property Name="TelefonoNro" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profesionales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PersonaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfesionalesEspecialidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProfesionalId" Type="int" Nullable="false" />
+          <Property Name="EspecialidadId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__PersonasT__Perso__6B24EA82">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+          <End Role="PersonasTelefonos" Type="Self.PersonasTelefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonasTelefonos">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__Espec__74AE54BC">
+          <End Role="Especialidades" Type="Self.Especialidades" Multiplicity="1" />
+          <End Role="ProfesionalesEspecialidades" Type="Self.ProfesionalesEspecialidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesionalesEspecialidades">
+              <PropertyRef Name="EspecialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__Espec__76969D2E">
+          <End Role="Especialidades" Type="Self.Especialidades" Multiplicity="1" />
+          <End Role="ProfesionalesEspecialidades" Type="Self.ProfesionalesEspecialidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesionalesEspecialidades">
+              <PropertyRef Name="EspecialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__Profe__73BA3083">
+          <End Role="Profesionales" Type="Self.Profesionales" Multiplicity="1" />
+          <End Role="ProfesionalesEspecialidades" Type="Self.ProfesionalesEspecialidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesionales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesionalesEspecialidades">
+              <PropertyRef Name="ProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__Profe__75A278F5">
+          <End Role="Profesionales" Type="Self.Profesionales" Multiplicity="1" />
+          <End Role="ProfesionalesEspecialidades" Type="Self.ProfesionalesEspecialidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesionales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesionalesEspecialidades">
+              <PropertyRef Name="ProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pacientes_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+          <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pacientes">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personas_DocumentoTipos">
+          <End Role="DocumentoTipos" Type="Self.DocumentoTipos" Multiplicity="1" />
+          <End Role="Personas" Type="Self.Personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentoTipos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="DocumentoTipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profesionales_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+          <End Role="Profesionales" Type="Self.Profesionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profesionales">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="PacienteCreate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Codigo" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellido" Type="varchar" Mode="In" />
+          <Parameter Name="DocumentoNro" Type="varchar" Mode="In" />
+          <Parameter Name="DocumentoTipo" Type="int" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="datetime" Mode="In" />
+          <Parameter Name="Domicilio" Type="varchar" Mode="In" />
+          <Parameter Name="Mail" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ConsultorioModelStoreContainer">
+          <EntitySet Name="DocumentoTipos" EntityType="Self.DocumentoTipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especialidades" EntityType="Self.Especialidades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacientes" EntityType="Self.Pacientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personas" EntityType="Self.Personas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonasTelefonos" EntityType="Self.PersonasTelefonos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profesionales" EntityType="Self.Profesionales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfesionalesEspecialidades" EntityType="Self.ProfesionalesEspecialidades" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PersonasT__Perso__6B24EA82" Association="Self.FK__PersonasT__Perso__6B24EA82">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="PersonasTelefonos" EntitySet="PersonasTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__Espec__74AE54BC" Association="Self.FK__Profesion__Espec__74AE54BC">
+            <End Role="Especialidades" EntitySet="Especialidades" />
+            <End Role="ProfesionalesEspecialidades" EntitySet="ProfesionalesEspecialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__Espec__76969D2E" Association="Self.FK__Profesion__Espec__76969D2E">
+            <End Role="Especialidades" EntitySet="Especialidades" />
+            <End Role="ProfesionalesEspecialidades" EntitySet="ProfesionalesEspecialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__Profe__73BA3083" Association="Self.FK__Profesion__Profe__73BA3083">
+            <End Role="Profesionales" EntitySet="Profesionales" />
+            <End Role="ProfesionalesEspecialidades" EntitySet="ProfesionalesEspecialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__Profe__75A278F5" Association="Self.FK__Profesion__Profe__75A278F5">
+            <End Role="Profesionales" EntitySet="Profesionales" />
+            <End Role="ProfesionalesEspecialidades" EntitySet="ProfesionalesEspecialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pacientes_Personas" Association="Self.FK_Pacientes_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Pacientes" EntitySet="Pacientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personas_DocumentoTipos" Association="Self.FK_Personas_DocumentoTipos">
+            <End Role="DocumentoTipos" EntitySet="DocumentoTipos" />
+            <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profesionales_Personas" Association="Self.FK_Profesionales_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Profesionales" EntitySet="Profesionales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ConsultorioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Pacientes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PersonaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Personas" Relationship="Self.FK_Pacientes_Personas" FromRole="Pacientes" ToRole="Personas" />
+        </EntityType>
+        <EntityType Name="Personas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pacientes" Relationship="Self.FK_Pacientes_Personas" FromRole="Personas" ToRole="Pacientes" />
+          <NavigationProperty Name="Profesionales" Relationship="ConsultorioModel.FK_Profesionales_Personas" FromRole="Personas" ToRole="Profesionales" />
+          <Property Name="DocumentoNro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentoTipoId" Type="Int32" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="3" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="Domicilio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DocumentoTipos" Relationship="ConsultorioModel.FK_Personas_DocumentoTipos" FromRole="Personas" ToRole="DocumentoTipos" />
+          <NavigationProperty Name="PersonasTelefonos" Relationship="ConsultorioModel.FK__PersonasT__Perso__6B24EA82" FromRole="Personas" ToRole="PersonasTelefonos" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Pacientes_Personas">
+          <End Role="Personas" Type="Self.Personas" Multiplicity="1" />
+          <End Role="Pacientes" Type="Self.Pacientes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pacientes">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConsultorioContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pacientes" EntityType="Self.Pacientes" />
+          <EntitySet Name="Personas" EntityType="Self.Personas" />
+          <AssociationSet Name="FK_Pacientes_Personas" Association="Self.FK_Pacientes_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Pacientes" EntitySet="Pacientes" />
+          </AssociationSet>
+          <EntitySet Name="Profesionales" EntityType="ConsultorioModel.Profesionales" />
+          <AssociationSet Name="FK_Profesionales_Personas" Association="ConsultorioModel.FK_Profesionales_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Profesionales" EntitySet="Profesionales" />
+          </AssociationSet>
+          <EntitySet Name="DocumentoTipos" EntityType="ConsultorioModel.DocumentoTipos" />
+          <EntitySet Name="Especialidades" EntityType="ConsultorioModel.Especialidades" />
+          <EntitySet Name="PersonasTelefonos" EntityType="ConsultorioModel.PersonasTelefonos" />
+          <EntitySet Name="ProfesionalesEspecialidades" EntityType="ConsultorioModel.ProfesionalesEspecialidades" />
+          <AssociationSet Name="FK_Personas_DocumentoTipos" Association="ConsultorioModel.FK_Personas_DocumentoTipos">
+            <End Role="DocumentoTipos" EntitySet="DocumentoTipos" />
+            <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__Espec__74AE54BC" Association="ConsultorioModel.FK__Profesion__Espec__74AE54BC">
+            <End Role="Especialidades" EntitySet="Especialidades" />
+            <End Role="ProfesionalesEspecialidades" EntitySet="ProfesionalesEspecialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__Espec__76969D2E" Association="ConsultorioModel.FK__Profesion__Espec__76969D2E">
+            <End Role="Especialidades" EntitySet="Especialidades" />
+            <End Role="ProfesionalesEspecialidades" EntitySet="ProfesionalesEspecialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonasT__Perso__6B24EA82" Association="ConsultorioModel.FK__PersonasT__Perso__6B24EA82">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="PersonasTelefonos" EntitySet="PersonasTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__Profe__73BA3083" Association="ConsultorioModel.FK__Profesion__Profe__73BA3083">
+            <End Role="Profesionales" EntitySet="Profesionales" />
+            <End Role="ProfesionalesEspecialidades" EntitySet="ProfesionalesEspecialidades" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Profesion__Profe__75A278F5" Association="ConsultorioModel.FK__Profesion__Profe__75A278F5">
+            <End Role="Profesionales" EntitySet="Profesionales" />
+            <End Role="ProfesionalesEspecialidades" EntitySet="ProfesionalesEspecialidades" />
+          </AssociationSet>
+          <FunctionImport Name="PacienteCreate">
+            <Parameter Name="Codigo" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="DocumentoNro" Mode="In" Type="String" />
+            <Parameter Name="DocumentoTipo" Mode="In" Type="Int32" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+            <Parameter Name="Domicilio" Mode="In" Type="String" />
+            <Parameter Name="Mail" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Profesionales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PersonaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Personas" Relationship="ConsultorioModel.FK_Profesionales_Personas" FromRole="Profesionales" ToRole="Personas" />
+          <NavigationProperty Name="ProfesionalesEspecialidades" Relationship="ConsultorioModel.FK__Profesion__Profe__73BA3083" FromRole="Profesionales" ToRole="ProfesionalesEspecialidades" />
+          <NavigationProperty Name="ProfesionalesEspecialidades1" Relationship="ConsultorioModel.FK__Profesion__Profe__75A278F5" FromRole="Profesionales" ToRole="ProfesionalesEspecialidades" />
+        </EntityType>
+        <Association Name="FK_Profesionales_Personas">
+          <End Type="ConsultorioModel.Personas" Role="Personas" Multiplicity="1" />
+          <End Type="ConsultorioModel.Profesionales" Role="Profesionales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profesionales">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DocumentoTipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Personas" Relationship="ConsultorioModel.FK_Personas_DocumentoTipos" FromRole="DocumentoTipos" ToRole="Personas" />
+        </EntityType>
+        <EntityType Name="Especialidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProfesionalesEspecialidades" Relationship="ConsultorioModel.FK__Profesion__Espec__74AE54BC" FromRole="Especialidades" ToRole="ProfesionalesEspecialidades" />
+          <NavigationProperty Name="ProfesionalesEspecialidades1" Relationship="ConsultorioModel.FK__Profesion__Espec__76969D2E" FromRole="Especialidades" ToRole="ProfesionalesEspecialidades" />
+        </EntityType>
+        <EntityType Name="PersonasTelefonos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonaId" Type="Int32" Nullable="false" />
+          <Property Name="TelefonoNro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Personas" Relationship="ConsultorioModel.FK__PersonasT__Perso__6B24EA82" FromRole="PersonasTelefonos" ToRole="Personas" />
+        </EntityType>
+        <EntityType Name="ProfesionalesEspecialidades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfesionalId" Type="Int32" Nullable="false" />
+          <Property Name="EspecialidadId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Especialidades" Relationship="ConsultorioModel.FK__Profesion__Espec__74AE54BC" FromRole="ProfesionalesEspecialidades" ToRole="Especialidades" />
+          <NavigationProperty Name="Especialidades1" Relationship="ConsultorioModel.FK__Profesion__Espec__76969D2E" FromRole="ProfesionalesEspecialidades" ToRole="Especialidades" />
+          <NavigationProperty Name="Profesionales" Relationship="ConsultorioModel.FK__Profesion__Profe__73BA3083" FromRole="ProfesionalesEspecialidades" ToRole="Profesionales" />
+          <NavigationProperty Name="Profesionales1" Relationship="ConsultorioModel.FK__Profesion__Profe__75A278F5" FromRole="ProfesionalesEspecialidades" ToRole="Profesionales" />
+        </EntityType>
+        <Association Name="FK_Personas_DocumentoTipos">
+          <End Type="ConsultorioModel.DocumentoTipos" Role="DocumentoTipos" Multiplicity="1" />
+          <End Type="ConsultorioModel.Personas" Role="Personas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentoTipos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="DocumentoTipoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__Espec__74AE54BC">
+          <End Type="ConsultorioModel.Especialidades" Role="Especialidades" Multiplicity="1" />
+          <End Type="ConsultorioModel.ProfesionalesEspecialidades" Role="ProfesionalesEspecialidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesionalesEspecialidades">
+              <PropertyRef Name="EspecialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__Espec__76969D2E">
+          <End Type="ConsultorioModel.Especialidades" Role="Especialidades" Multiplicity="1" />
+          <End Type="ConsultorioModel.ProfesionalesEspecialidades" Role="ProfesionalesEspecialidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesionalesEspecialidades">
+              <PropertyRef Name="EspecialidadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonasT__Perso__6B24EA82">
+          <End Type="ConsultorioModel.Personas" Role="Personas" Multiplicity="1" />
+          <End Type="ConsultorioModel.PersonasTelefonos" Role="PersonasTelefonos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonasTelefonos">
+              <PropertyRef Name="PersonaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__Profe__73BA3083">
+          <End Type="ConsultorioModel.Profesionales" Role="Profesionales" Multiplicity="1" />
+          <End Type="ConsultorioModel.ProfesionalesEspecialidades" Role="ProfesionalesEspecialidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesionales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesionalesEspecialidades">
+              <PropertyRef Name="ProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Profesion__Profe__75A278F5">
+          <End Type="ConsultorioModel.Profesionales" Role="Profesionales" Multiplicity="1" />
+          <End Type="ConsultorioModel.ProfesionalesEspecialidades" Role="ProfesionalesEspecialidades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profesionales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesionalesEspecialidades">
+              <PropertyRef Name="ProfesionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ConsultorioModelStoreContainer" CdmEntityContainer="ConsultorioContext">
+          <EntitySetMapping Name="Pacientes">
+            <EntityTypeMapping TypeName="ConsultorioModel.Pacientes">
+              <MappingFragment StoreEntitySet="Pacientes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="PersonaId" ColumnName="PersonaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personas">
+            <EntityTypeMapping TypeName="ConsultorioModel.Personas">
+              <MappingFragment StoreEntitySet="Personas">
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Domicilio" ColumnName="Domicilio" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="DocumentoTipoId" ColumnName="DocumentoTipoId" />
+                <ScalarProperty Name="DocumentoNro" ColumnName="DocumentoNro" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profesionales">
+            <EntityTypeMapping TypeName="ConsultorioModel.Profesionales">
+              <MappingFragment StoreEntitySet="Profesionales">
+                <ScalarProperty Name="PersonaId" ColumnName="PersonaId" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentoTipos">
+            <EntityTypeMapping TypeName="ConsultorioModel.DocumentoTipos">
+              <MappingFragment StoreEntitySet="DocumentoTipos">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialidades">
+            <EntityTypeMapping TypeName="ConsultorioModel.Especialidades">
+              <MappingFragment StoreEntitySet="Especialidades">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonasTelefonos">
+            <EntityTypeMapping TypeName="ConsultorioModel.PersonasTelefonos">
+              <MappingFragment StoreEntitySet="PersonasTelefonos">
+                <ScalarProperty Name="TelefonoNro" ColumnName="TelefonoNro" />
+                <ScalarProperty Name="PersonaId" ColumnName="PersonaId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfesionalesEspecialidades">
+            <EntityTypeMapping TypeName="ConsultorioModel.ProfesionalesEspecialidades">
+              <MappingFragment StoreEntitySet="ProfesionalesEspecialidades">
+                <ScalarProperty Name="EspecialidadId" ColumnName="EspecialidadId" />
+                <ScalarProperty Name="ProfesionalId" ColumnName="ProfesionalId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PacienteCreate" FunctionName="ConsultorioModel.Store.PacienteCreate" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

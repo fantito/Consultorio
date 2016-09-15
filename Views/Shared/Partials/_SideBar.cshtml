@@ -1,0 +1,127 @@
+﻿<link href="~/Content/SideBar.css" rel="stylesheet" />
+
+<div class="col-sm-2 col-md-2">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        <span class="glyphicon glyphicon-list">
+                        </span>Administracion
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <a href="@Url.RouteUrl("Pacientes")">Pacientes</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#">Profesionales</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#">Especialidades</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#">Consultorios</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        <span class="glyphicon glyphicon-th">
+                        </span>Reportes
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <a href="#">Reporte 1</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#">Reporte 2</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#">Reporte 3</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="#">Reporte 4</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<style>
+    .list-group.panel > .list-group-item {
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px
+    }
+    .list-group-submenu {
+      margin-left:100px;
+      background:black;
+    }
+</style>
+
+    <div class="col-sm-3">
+
+        <!-- menu -->
+        <div id="MainMenu">
+            <div class="list-group panel">
+                <a href="#" class="list-group-item list-group-item-success" data-parent="#MainMenu">Item 1</a>
+                <a href="#" class="list-group-item list-group-item-success" data-parent="#MainMenu">Item 2</a>
+                <a href="#demo3" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item 3 <i class="fa fa-caret-down"></i></a>
+                <div class="collapse" id="demo3">
+                    <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Subitem 1 <i class="fa fa-caret-down"></i></a>
+                    <div class="collapse list-group-submenu" id="SubMenu1">
+                        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
+                        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
+                        <a href="#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i class="fa fa-caret-down"></i></a>
+                        <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
+                            <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
+                            <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
+                        </div>
+                        <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
+                    </div>
+                    <a href="javascript:;" class="list-group-item">Subitem 2</a>
+                    <a href="javascript:;" class="list-group-item">Subitem 3</a>
+                </div>
+                <a href="#demo4" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item 4  <i class="fa fa-caret-down"></i></a>
+                <div class="collapse" id="demo4">
+                    <a href="" class="list-group-item">Subitem 1</a>
+                    <a href="" class="list-group-item">Subitem 2</a>
+                    <a href="" class="list-group-item">Subitem 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- /sidebar -->*@

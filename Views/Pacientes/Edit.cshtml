@@ -1,0 +1,106 @@
+﻿@model Consultorio.Models.Pacientes
+
+<div class="col-md-9">
+
+    <form class="form-horizontal" method="post" action="@Url.RouteUrl("Pacientes_New")">
+        <fieldset>
+            <!-- Form Name -->
+            <h4>Modificar paciente</h4>
+            <hr />
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Codigo">Código</label>
+                <div class="col-md-2">
+                    <input id="Codigo" name="Codigo" type="text" placeholder="codigo" class="form-control input-md" required="">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Nombre">Nombre</label>
+                <div class="col-md-5">
+                    <input id="Nombre" name="Nombre" type="text" placeholder="nombre" class="form-control input-md" required="">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Apellido">Apellido</label>
+                <div class="col-md-5">
+                    <input id="Apellido" name="Apellido" type="text" placeholder="apellido" class="form-control input-md" required="">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Domicilio">Domicilio</label>
+                <div class="col-md-6">
+                    <input id="Domicilio" name="Domicilio" type="text" placeholder="domicilio" class="form-control input-md">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Mail">Mail</label>
+                <div class="col-md-5">
+                    <input id="Mail" name="Mail" type="text" placeholder="mail@mail.com" class="form-control input-md">
+
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="DocumentoTipo">Tipo de documento</label>
+                <div class="col-md-2">
+                    <select id="DocumentoTipo" name="DocumentoTipo" class="form-control">
+                        <option value="1">DNI</option>
+                        <option value="2">LE</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="DocumentoNro">Nro de documento</label>
+                <div class="col-md-4">
+                    <input id="DocumentoNro" name="DocumentoNro" type="text" placeholder="nro de documento" class="form-control input-md" required="">
+
+                </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Observaciones">Observaciones</label>
+                <div class="col-md-4">
+                    <textarea class="form-control" id="Observaciones" name="Observaciones"></textarea>
+                </div>
+            </div>
+
+            <!-- File Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Foto">Foto</label>
+                <div class="col-md-4">
+                    <input id="Foto" name="Foto" class="input-file" type="file">
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="Guardar"></label>
+                <div class="col-md-4">
+                    <button id="Guardar" name="Guardar" class="btn btn-default">Guardar</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

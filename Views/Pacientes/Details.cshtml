@@ -1,0 +1,89 @@
+﻿@model Consultorio.Models.Pacientes
+
+ <div class="col-md-8">
+        <h4>Detalles de paciente</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Personas.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Personas.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Personas.Apellido)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Personas.Apellido)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Personas.DocumentoNro)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Personas.DocumentoNro)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Personas.Domicilio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Personas.Domicilio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Personas.FechaNacimiento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Personas.FechaNacimiento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Personas.Mail)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Personas.Mail)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Personas.DocumentoTipos.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Personas.DocumentoTipos.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Personas.PersonasTelefonos)
+            </dt>
+            <dd>
+                <ol>
+                    @foreach (var item in Model.Personas.PersonasTelefonos)
+                    {
+                        <li>@item.TelefonoNro</li>
+                    }
+                </ol>
+               
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
